@@ -80,24 +80,22 @@ select * from request;
     
 create table LineItem (
 	ID int primary key auto_increment,
-    RequestID int not null,
-	foreign key (RequestID)
-		references Request(ID),
-	ProductID int not null, 
-	foreign key (ProductID)
-		references Product(ID),
-	Quantity int default 0
+    RequestID int not null, foreign key (RequestID) references Request(ID),
+	ProductID int not null, foreign key (ProductID) references Product(ID),
+	Quantity int default 0,
+    constraint req_pdt unique (RequestID, ProductID)
 );
-
-
 
 insert LineItem (ID, RequestID, ProductID, Quantity) values 
 	(1, 1, 1, 10);
     
 select * from LineItem;
     
-    
-    
+DROP USER IF EXISTS prs_user@localhost;
+CREATE USER prs_user@localhost IDENTIFIED BY 'sesame';
+GRANT SELECT, INSERT, DELETE, UPDATE ON prs.* TO prs_user@localhost;
+
+
     
     
     
