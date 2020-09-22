@@ -30,11 +30,11 @@ create table orders (
     Description varchar(30) not null, 
     Total decimal(9,2) not null default 0,
     customersID int not null, 
-    foreign key (customerID) references customers(ID)
+    foreign key (customersID) references customers(ID)
 );
 
 Insert orders (Description, Total, customersID) values 
-	('coffee', 1000, 1),
-    ('paper', 2000, 2);
+	('Premium Coffee', 1000, 1),
+    ('Premium Paper', 2000, 2);
     
 select * from orders;
