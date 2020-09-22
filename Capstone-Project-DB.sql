@@ -63,7 +63,7 @@ create table Request (
     UserID int not null,
 	foreign key (UserID)
 		references User(ID),
-	Desciption varchar(100) not null, 
+	Description varchar(100) not null, 
     Justification varchar(255) not null, 
     DateNeeded date not null,
     DeliveryMode varchar(25) not null,
@@ -73,7 +73,7 @@ create table Request (
     ReseasonForRejection varchar(100)         
 );
 
-insert Request (ID, UserID, Desciption, Justification, DateNeeded, DeliveryMode, Total, SubmittedDate) values 
+insert Request (ID, UserID, Description, Justification, DateNeeded, DeliveryMode, Total, SubmittedDate) values 
 	(1, 2, 'Request from ABC Company', 'Previous order damaged', '2017-06-15', 'FedEx', 100, '2017-06-15');
 
 select * from request;
