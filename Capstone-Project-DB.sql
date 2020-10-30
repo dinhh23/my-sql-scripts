@@ -1,9 +1,8 @@
 USE sys;
+-- create and select the database
 
 DROP database if exists prs;
-
 CREATE database prs;
-
 USE prs;
 
 create table user (
@@ -25,7 +24,7 @@ select * from user;
 	
 create table vendor ( 
 	ID int primary key auto_increment,
-    Code varchar(10) not null unique, 
+    Code varchar(10) not null, 
     Name varchar(255) not null, 
     Address varchar(255) not null,
     City varchar(255) not null, 
@@ -45,7 +44,7 @@ create table Product (
     VendorID int not null, 
     foreign key (VendorID) 
 		references Vendor(ID),
-    PartNumber varchar(50),
+    PartNumber varchar(50) not null,
     Name varchar(150) not null, 
     Price decimal(10,2) not null, 
     Unit varchar(255), 
@@ -90,7 +89,9 @@ insert LineItem (ID, RequestID, ProductID, Quantity) values
 	(1, 1, 1, 10);
     
 select * from LineItem;
-    
+
+-- create a user and grant privileges to that user 
+-- this is the user we'll use when accessing the database from our app
 DROP USER IF EXISTS prs_user@localhost;
 CREATE USER prs_user@localhost IDENTIFIED BY 'sesame';
 GRANT SELECT, INSERT, DELETE, UPDATE ON prs.* TO prs_user@localhost;
